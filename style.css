@@ -1,0 +1,7 @@
+*{
+    box-sizing: border-box; /* ~~~~~~~ Box Sizing BORDER BOX ~~~~~~~ */
+}
+
+body {
+    padding-left: 50px;
+}
