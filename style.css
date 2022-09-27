@@ -5,3 +5,15 @@
 body {
     padding-left: 50px;
 }
+
+td {
+    /* min-width: 50px; */
+    /* min-height: 30px; */
+    border: 1px solid black;
+}
+
+.card {
+    border: 1px solid black;
+    /* width: 100px; */
+    /* height: 100px; */
+}
