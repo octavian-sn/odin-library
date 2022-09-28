@@ -32,18 +32,12 @@ myLibrary.push(new Book ('Pale Fire', 'Vladimir Nabokov', '246', 'Read' ));
 function displayBooks() {
   // Create header row
   let headRow = document.createElement('tr');
-  let headTitle = document.createElement('th');
-  headTitle.innerText = 'Title';
-  headRow.appendChild(headTitle);
-  let headAuthor = document.createElement('th')
-  headAuthor.innerText = 'Author';
-  headRow.appendChild(headAuthor);
-  let headPages = document.createElement('th')
-  headPages.innerText = 'Pages';
-  headRow.appendChild(headPages);
-  let headStatus = document.createElement('th')
-  headStatus.innerText = 'Status';
-  headRow.appendChild(headStatus);
+  let headCells = ['Title', 'Author', 'Pages', 'Status']
+  headCells.forEach(item => {
+    let head = document.createElement('th');
+    head.innerText = item;
+    headRow.appendChild(head);
+  })
   table.appendChild(headRow);
   // Create row for each book
   myLibrary.forEach(book => {
@@ -100,6 +94,7 @@ function addBookPopup() {
   nameInput.setAttribute('name', 'title');
   nameInput.setAttribute('id', 'title');
   nameInput.setAttribute('placeholder', 'Title');
+  nameInput.setAttribute('required', '');
   popupWindow.appendChild(nameInput);
 
   const authorInput = document.createElement('input')
@@ -107,6 +102,7 @@ function addBookPopup() {
   authorInput.setAttribute('name', 'author');
   authorInput.setAttribute('id', 'author');
   authorInput.setAttribute('placeholder', 'Author');
+  authorInput.setAttribute('required', '');
   popupWindow.appendChild(authorInput);
 
   const pagesInput = document.createElement('input')
@@ -114,6 +110,7 @@ function addBookPopup() {
   pagesInput.setAttribute('name', 'pages');
   pagesInput.setAttribute('id', 'pages');
   pagesInput.setAttribute('placeholder', 'Pages');
+  pagesInput.setAttribute('required', '');
   popupWindow.appendChild(pagesInput);
 
   // Read/Unread/Ongoing button
@@ -150,4 +147,3 @@ button.addEventListener('click', addBookPopup)
 
 displayBooks();
 // console.log('Testing bananas');
-
