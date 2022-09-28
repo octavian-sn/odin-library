@@ -42,7 +42,7 @@ function displayBooks() {
   // Create row for each book
   myLibrary.forEach(book => {
     let bookRow = document.createElement('tr');
-    bookRow.setAttribute('data-row', `row${myLibrary.indexOf(book)}`);
+
     // Create cells for title/author/pages
     for (const property in book) {
       const cell = document.createElement('td');
@@ -51,11 +51,14 @@ function displayBooks() {
       const cellText = document.createTextNode(book[property])
       cell.appendChild(cellText);
       }
+
       // Create cells for status
       if ( property === 'Status') {
         const statusInput = document.createElement('select')
-        statusInput.setAttribute('name', 'status');
-        statusInput.setAttribute('id', 'status');
+        // Change status of books from dropdown
+        statusInput.addEventListener('change', function(){
+          book[property] = statusInput.value;
+        })
         let statuses = ['Read', 'Unread', 'Ongoing']
         statuses.forEach(item => {
           let option = document.createElement('option');
@@ -66,6 +69,7 @@ function displayBooks() {
             option.setAttribute('selected', '')
           }
         })
+        
         // Delete book button
         cell.appendChild(statusInput)
         const deleteBook = document.createElement('button')
