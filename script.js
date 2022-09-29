@@ -2,6 +2,7 @@ const booksDisplay = document.getElementById('book-table');
 const mainDisplay = document.getElementById('main');
 const table = document.createElement('table');
 const popupWindow = document.createElement('div')
+popupWindow.setAttribute('id', 'popup');
 
 
 // Book storage
@@ -73,7 +74,8 @@ function displayBooks() {
         // Delete book button
         cell.appendChild(statusInput)
         const deleteBook = document.createElement('button')
-        deleteBook.innerText = 'X';
+        deleteBook.innerText = 'Delete';
+        deleteBook.classList.add('delete')
         deleteBook.addEventListener('click', deleteRow);
         cell.appendChild(deleteBook);
         function deleteRow(){
@@ -98,7 +100,6 @@ function addBookPopup() {
   nameInput.setAttribute('name', 'title');
   nameInput.setAttribute('id', 'title');
   nameInput.setAttribute('placeholder', 'Title');
-  nameInput.setAttribute('required', '');
   popupWindow.appendChild(nameInput);
 
   const authorInput = document.createElement('input')
@@ -106,7 +107,6 @@ function addBookPopup() {
   authorInput.setAttribute('name', 'author');
   authorInput.setAttribute('id', 'author');
   authorInput.setAttribute('placeholder', 'Author');
-  authorInput.setAttribute('required', '');
   popupWindow.appendChild(authorInput);
 
   const pagesInput = document.createElement('input')
@@ -114,7 +114,6 @@ function addBookPopup() {
   pagesInput.setAttribute('name', 'pages');
   pagesInput.setAttribute('id', 'pages');
   pagesInput.setAttribute('placeholder', 'Pages');
-  pagesInput.setAttribute('required', '');
   popupWindow.appendChild(pagesInput);
 
   // Read/Unread/Ongoing button
@@ -138,6 +137,7 @@ function addBookPopup() {
   mainDisplay.appendChild(popupWindow);
 }
 
+// Function used by submit book button
 function submitBook() {
   addBookToLibrary();
   table.innerHTML = ''
