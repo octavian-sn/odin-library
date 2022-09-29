@@ -88,13 +88,10 @@ function displayBooks() {
     table.appendChild(bookRow);
   });
   booksDisplay.appendChild(table);
-  // table.setAttribute("border", "2");
 }
 
-// Add new book button
+// Add new book inputs
 function addBookPopup() {
-  popupWindow.classList.add('new-window');
-
   const nameInput = document.createElement('input')
   nameInput.setAttribute('type', 'text');
   nameInput.setAttribute('name', 'title');
@@ -129,11 +126,13 @@ function addBookPopup() {
   })
   popupWindow.appendChild(statusInput);
   
+  // Submit book button
   var submitButton = document.createElement('button')
   submitButton.innerText = 'Submit';
   submitButton.addEventListener('click', submitBook);
   popupWindow.appendChild(submitButton);
-  
+
+  document.body.appendChild(overlay);
   mainDisplay.appendChild(popupWindow);
 }
 
@@ -143,11 +142,19 @@ function submitBook() {
   table.innerHTML = ''
   displayBooks();
   popupWindow.innerHTML ='';
-  mainDisplay.removeChild(popupWindow);
+  document.body.removeChild(overlay);
 }
 
+// Popup 
 const button = document.getElementById('new-book');
-button.addEventListener('click', addBookPopup)
+button.addEventListener('click', addBookPopup);
+
+// Overlay behind popup (clicking it closes popup)
+const overlay = document.createElement('div');
+overlay.classList.add('overlay');
+overlay.addEventListener('click', function(){
+  popupWindow.innerHTML ='';
+  document.body.removeChild(overlay);
+})
 
 displayBooks();
-// console.log('Testing bananas');
